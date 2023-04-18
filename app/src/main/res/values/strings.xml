@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">HealthTrack</string>
+    <string name="String1opcion">Imc</string>
+    <string name="String2opcion">Ejercicios</string>
+    <string name="String3opcion">Historial</string>
+    <string name="String4opcion">Recompensas</string>
+
+
+</resources>
