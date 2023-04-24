@@ -12,6 +12,22 @@
         android:theme="@style/Theme.HealthTrack"
         tools:targetApi="31">
         <activity
+            android:name=".CanjearActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ColecccionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActualizarMiImcActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VerMiImcActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_settings" />
+        <activity
             android:name=".RecompensasActivity"
             android:exported="false" />
         <activity

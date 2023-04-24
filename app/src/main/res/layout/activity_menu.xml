@@ -32,6 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/String1opcion"
+                android:textColor="@color/colorTexto"
                 android:textAllCaps="true" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -60,6 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/String2opcion"
+                android:textColor="@color/colorTexto"
                 android:textAllCaps="true" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -89,6 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/String3opcion"
+                android:textColor="@color/colorTexto"
                 android:textAllCaps="true" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -116,6 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/String4opcion"
+                android:textColor="@color/colorTexto"
                 android:textAllCaps="true" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
