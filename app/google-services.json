@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "945140784074",
+    "project_id": "healthtrack-96f0d",
+    "storage_bucket": "healthtrack-96f0d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945140784074:android:552a5d1b43bd043e304d33",
+        "android_client_info": {
+          "package_name": "com.example.healthtrack"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "945140784074-t7tk1pdtvnogts0sreob3qpss7o55n3g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCCkgVgT-nfGs8-rWM0TXeZwda1gqurHQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "945140784074-t7tk1pdtvnogts0sreob3qpss7o55n3g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
