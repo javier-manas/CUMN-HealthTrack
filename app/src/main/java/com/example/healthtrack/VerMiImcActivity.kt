@@ -24,6 +24,12 @@ class VerMiImcActivity : AppCompatActivity() {
         initListeners()
     }
 
+    override fun onBackPressed() {
+        val intent = Intent(this, ImcActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
     private fun initListeners() {
         btnActualizar.setOnClickListener {
             navigateToActualizarMiImc()

@@ -9,10 +9,13 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class MenuActivity : AppCompatActivity() {
 
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var firebaseBD: DatabaseReference
 
     private lateinit var View1opcion: CardView
     private lateinit var View2opcion: CardView
@@ -58,6 +61,7 @@ class MenuActivity : AppCompatActivity() {
         View3opcion = findViewById(R.id.View3opcion)
         View4opcion = findViewById(R.id.View4opcion)
         firebaseAuth = FirebaseAuth.getInstance()
+        firebaseBD = FirebaseDatabase.getInstance().getReference("MenuBD")
     }
 
     private fun initListeners() {

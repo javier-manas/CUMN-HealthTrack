@@ -15,10 +15,10 @@ import com.google.firebase.ktx.options
 
 class MainActivity : AppCompatActivity() {
 
-    private var usuario: String = "True"
+
 
     private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var authStateListener: FirebaseAuth.AuthStateListener
+    //private lateinit var authStateListener: FirebaseAuth.AuthStateListener
 
     private lateinit var viewIniciarSesion: CardView
     private lateinit var viewRegistrarse: CardView
@@ -26,9 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var etPassword: TextView
 
 
-    companion object{
-        const val USARIO_KEY = "True"
-    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,9 +58,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun navigateToMenu(usuario: String) {
+    private fun navigateToMenu() {
         val intent = Intent(this, MenuActivity::class.java)
-        intent.putExtra(USARIO_KEY, usuario)
         startActivity(intent)
     }
 
@@ -77,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful){
                     val user = firebaseAuth.currentUser
                     Toast.makeText(baseContext,"Usuario y contraseña correctos", Toast.LENGTH_SHORT).show()
-                    navigateToMenu(usuario)
+                    navigateToMenu()
                 }
                 else
                 {

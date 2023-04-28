@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -94,6 +95,7 @@ class ActualizarMiImcActivity : AppCompatActivity() {
     }
 
     private fun navigateToResult(result: Double) {
+        Toast.makeText(baseContext,"Informacion actualizada", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, VerMiImcActivity::class.java)
         intent.putExtra(IMC_KEY, result)
         startActivity(intent)

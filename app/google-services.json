@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "945140784074",
+    "firebase_url": "https://healthtrack-96f0d-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "healthtrack-96f0d",
     "storage_bucket": "healthtrack-96f0d.appspot.com"
   },

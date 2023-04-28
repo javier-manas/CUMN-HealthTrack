@@ -7,10 +7,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class RegistrarseActivity : AppCompatActivity() {
 
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var firebaseBD: DatabaseReference
 
     private lateinit var viewRegCrearCuenta: CardView
     private lateinit var etRegUsuario: TextView
@@ -33,39 +36,60 @@ class RegistrarseActivity : AppCompatActivity() {
         etRegPassword = findViewById(R.id.etRegPassword)
         etRegConfirmar = findViewById(R.id.etRegConfirmar)
         firebaseAuth = FirebaseAuth.getInstance()
+        firebaseBD = FirebaseDatabase.getInstance().getReference("RegistrarseBD")
     }
 
     private fun initListeners() {
         viewRegCrearCuenta.setOnClickListener {
             crearCuenta()
         }
-
-
-
     }
 
     private fun crearCuenta() {
         var pass1 = etRegPassword.text.toString()
         var pass2 = etRegConfirmar.text.toString()
+        var usuario = etRegUsuario.text.toString()
+        var puntos = 0
+        var tickets = 0
         if (pass1.equals(pass2)){
 
-            firebaseAuth.createUserWithEmailAndPassword(etRegEmailAddress.text.toString(), etRegPassword.text.toString())
-                .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful){
-                    Toast.makeText(baseContext,"Cuenta creada correctamente", Toast.LENGTH_SHORT).show()
-                    navigateToMain()
-                }
-                else
-                {
-                    Toast.makeText(baseContext,"Algo salio mal al crear la cuenta: " + task.exception, Toast.LENGTH_SHORT).show()
-                }
-            }
+           if (usuario.isNotEmpty()){
+
+               firebaseAuth.createUserWithEmailAndPassword(etRegEmailAddress.text.toString(), etRegPassword.text.toString())
+                   .addOnCompleteListener(this) { task ->
+                       if (task.isSuccessful){
+                           uploadData(usuario, puntos, tickets)
+                           Toast.makeText(baseContext,"Cuenta creada correctamente", Toast.LENGTH_SHORT).show()
+                           navigateToMain()
+                       }
+                       else
+                       {
+                           Toast.makeText(baseContext,"Algo salio mal al crear la cuenta: " + task.exception, Toast.LENGTH_SHORT).show()
+                       }
+                   }
+
+           }
+           else
+           {
+               Toast.makeText(baseContext,"el campo usuario esta vacio", Toast.LENGTH_SHORT).show()
+           }
 
         }
         else
         {
             Toast.makeText(baseContext,"Dos contraseñas diferentes introducidas", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun uploadData(usuario: String, puntos: Int, tickets: Int) {
+        val usID = firebaseBD.push().key!!
+        val usModel = UsuarioModel(usID, usuario, puntos, tickets)
+        firebaseBD.child(usID).setValue(usModel)
+            .addOnCompleteListener {
+                Toast.makeText(baseContext,"admin: data uploaded", Toast.LENGTH_LONG).show()
+            }.addOnFailureListener {err ->
+                Toast.makeText(baseContext,"admin: data not uploaded: ${err.message}", Toast.LENGTH_LONG).show()
+            }
     }
 
     private fun navigateToMain() {

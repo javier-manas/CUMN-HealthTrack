@@ -42,7 +42,6 @@ class ImcActivity : AppCompatActivity() {
     }
 
     private fun navigateToActualizarMiImc() {
-        Toast.makeText(baseContext,"Informacion actualizada", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, ActualizarMiImcActivity::class.java)
         startActivity(intent)
     }
