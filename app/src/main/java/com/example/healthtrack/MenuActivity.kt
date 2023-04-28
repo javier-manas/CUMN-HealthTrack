@@ -45,6 +45,9 @@ class MenuActivity : AppCompatActivity() {
             R.id.item_ajustes -> {
                 Toast.makeText(baseContext,"esta funcion aun no se ha implementado", Toast.LENGTH_SHORT).show()
             }
+            R.id.item_clasificacion -> {
+                Toast.makeText(baseContext,"esta funcion aun no se ha implementado", Toast.LENGTH_SHORT).show()
+            }
         }
         return super.onOptionsItemSelected(item)
     }

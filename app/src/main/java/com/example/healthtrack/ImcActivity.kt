@@ -3,6 +3,7 @@ package com.example.healthtrack
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 
 class ImcActivity : AppCompatActivity() {
@@ -41,6 +42,7 @@ class ImcActivity : AppCompatActivity() {
     }
 
     private fun navigateToActualizarMiImc() {
+        Toast.makeText(baseContext,"Informacion actualizada", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, ActualizarMiImcActivity::class.java)
         startActivity(intent)
     }

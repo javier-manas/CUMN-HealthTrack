@@ -7,4 +7,7 @@
     <item
         android:id="@+id/item_ajustes"
         android:title="ajustes" />
+    <item
+        android:id="@+id/item_clasificacion"
+        android:title="clasificacion" />
 </menu>
