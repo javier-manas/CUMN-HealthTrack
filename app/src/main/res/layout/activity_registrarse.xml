@@ -6,10 +6,33 @@
     android:layout_height="match_parent"
     android:background="@color/background_app"
 
-    tools:context=".MainActivity">
+    tools:context=".RegistrarseActivity">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/viewIniciarSesion"
+        android:id="@+id/viewRegUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        app:cardBackgroundColor="@color/background_component"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/etRegUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="12"
+            android:hint="usuario"
+            android:inputType="text"
+            android:textColor="@color/colorTexto"
+            android:textColorHint="@color/colorTexto" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/viewRegCrearCuenta"
         android:layout_width="128dp"
         android:layout_height="32dp"
         android:layout_marginTop="60dp"
@@ -18,7 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewContraseña">
+        app:layout_constraintTop_toBottomOf="@+id/viewRegConfirmar">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -30,7 +53,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="iniciar sesion"
+                android:text="Crear cuenta"
                 android:textAllCaps="true"
                 android:textColor="@color/colorTexto" />
 
@@ -39,18 +62,18 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/viewCorreoElectronico"
+        android:id="@+id/viewRegCorreoElectronico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="18dp"
         app:cardBackgroundColor="@color/background_component"
         app:cardCornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/viewRegUsuario">
 
         <EditText
-            android:id="@+id/etEmailAddress"
+            android:id="@+id/etRegEmailAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:autofillHints=""
@@ -62,18 +85,18 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/viewContraseña"
+        android:id="@+id/viewRegContraseña"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="18dp"
         app:cardBackgroundColor="@color/background_component"
         app:cardCornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewCorreoElectronico">
+        app:layout_constraintTop_toBottomOf="@+id/viewRegCorreoElectronico">
 
         <EditText
-            android:id="@+id/etPassword"
+            android:id="@+id/etRegPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:autofillHints=""
@@ -86,65 +109,51 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/viewRegistrarse"
-        android:layout_width="128dp"
-        android:layout_height="32dp"
+        android:id="@+id/viewRegConfirmar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
         app:cardBackgroundColor="@color/background_component"
         app:cardCornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="40dp"
-        android:layout_marginEnd="20dp">
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Registrarse"
-                android:textAllCaps="true"
-                android:textColor="@color/colorTexto" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/viewOlvideMiContraseña"
-        android:layout_width="128dp"
-        android:layout_height="32dp"
-        app:cardBackgroundColor="@color/background_component"
-        app:cardCornerRadius="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="40dp"
-        android:layout_marginStart="20dp">
+        app:layout_constraintTop_toBottomOf="@+id/viewRegContraseña">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Olvide mi contraseña"
-                android:textAllCaps="true"
-                android:textSize="10dp"
-                android:textColor="@color/colorTexto" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
+        <EditText
+            android:id="@+id/etRegConfirmar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="12"
+            android:hint="confirme su contraseña"
+            android:inputType="textPassword"
+            android:textColor="@color/colorTexto"
+            android:textColorHint="@color/colorTexto" />
 
     </androidx.cardview.widget.CardView>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ingrese \nsu \ninformación"
+            android:textAllCaps="true"
+            android:textColor="@color/colorTexto"
+            android:textSize="40dp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
