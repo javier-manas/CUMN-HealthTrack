@@ -1,4 +1,4 @@
-package com.example.healthtrack
+package com.example.healthtrack.models
 
 data class UsuarioModel (
     var usID: String? = null,

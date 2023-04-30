@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var viewIniciarSesion: CardView
     private lateinit var viewRegistrarse: CardView
+    private lateinit var viewOlvideMiContraseña: CardView
     private lateinit var etEmailAddress: TextView
     private lateinit var etPassword: TextView
 
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
     private fun initComponents() {
         viewIniciarSesion = findViewById(R.id.viewIniciarSesion)
         viewRegistrarse = findViewById(R.id.viewRegistrarse)
+        viewOlvideMiContraseña = findViewById(R.id.viewOlvideMiContraseña)
         etEmailAddress = findViewById(R.id.etEmailAddress)
         etPassword = findViewById(R.id.etPassword)
         firebaseAuth = FirebaseAuth.getInstance()
@@ -54,6 +56,10 @@ class MainActivity : AppCompatActivity() {
 
         viewRegistrarse.setOnClickListener {
             navigateToRegistrarse()
+        }
+
+        viewOlvideMiContraseña.setOnClickListener {
+            navigateToMenu()
         }
 
     }
