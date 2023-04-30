@@ -47,11 +47,12 @@ class RegistrarseActivity : AppCompatActivity() {
     }
 
     private fun crearCuenta() {
-        var pass1 = etRegPassword.text.toString()
-        var pass2 = etRegConfirmar.text.toString()
-        var usuario = etRegUsuario.text.toString()
-        var puntos = 0
-        var tickets = 0
+        val pass1 = etRegPassword.text.toString()
+        val pass2 = etRegConfirmar.text.toString()
+        val usuario = etRegUsuario.text.toString()
+        val correo = etRegEmailAddress.text.toString()
+        val puntos = 0
+        val tickets = 0
         if (pass1.equals(pass2)){
 
            if (usuario.isNotEmpty()){
@@ -59,7 +60,7 @@ class RegistrarseActivity : AppCompatActivity() {
                firebaseAuth.createUserWithEmailAndPassword(etRegEmailAddress.text.toString(), etRegPassword.text.toString())
                    .addOnCompleteListener(this) { task ->
                        if (task.isSuccessful){
-                           uploadData(usuario, puntos, tickets)
+                           uploadData(correo, usuario, puntos, tickets)
                            Toast.makeText(baseContext,"Cuenta creada correctamente", Toast.LENGTH_SHORT).show()
                            navigateToMain()
                        }
@@ -82,9 +83,9 @@ class RegistrarseActivity : AppCompatActivity() {
         }
     }
 
-    private fun uploadData(usuario: String, puntos: Int, tickets: Int) {
-        val usID = firebaseBD.push().key!!
-        val usModel = UsuarioModel(usID, usuario, puntos, tickets)
+    private fun uploadData(correo: String, usuario: String, puntos: Int, tickets: Int) {
+        val usID = firebaseAuth.uid!!
+        val usModel = UsuarioModel(usID, correo, usuario, puntos, tickets)
         firebaseBD.child(usID).setValue(usModel)
             .addOnCompleteListener {
                 Toast.makeText(baseContext,"admin: data uploaded", Toast.LENGTH_LONG).show()

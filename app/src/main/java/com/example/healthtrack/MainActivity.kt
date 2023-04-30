@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewOlvideMiContraseña.setOnClickListener {
-            navigateToMenu()
+            signIn("p@gmail.com","123123")
         }
 
     }

@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.inputmethod.InputBinding
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import com.example.healthtrack.models.UsuarioModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 class MenuActivity : AppCompatActivity() {
 
@@ -22,13 +24,39 @@ class MenuActivity : AppCompatActivity() {
     private lateinit var View3opcion: CardView
     private lateinit var View4opcion: CardView
 
+    private lateinit var textUsuarioMenu: TextView
+    private lateinit var textPuntosMenu: TextView
+    private lateinit var textTicketsMenu: TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
         initComponents()
         initListeners()
+        getData()
+        
+
     }
+
+    private fun getData() {
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("RegistrarseBD/" + firebaseAuth.uid!! )
+        myRef.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val userProfile = snapshot.getValue(UsuarioModel::class.java)
+                textUsuarioMenu.text = "User: " +userProfile?.usuario.toString()
+                textPuntosMenu.text = "Puntos: " +userProfile?.Puntos.toString()
+                textTicketsMenu.text = "Tickets: " + userProfile?.Tickets.toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(baseContext,"cancel", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+    }
+
 
     override fun onBackPressed() {
         return
@@ -60,8 +88,13 @@ class MenuActivity : AppCompatActivity() {
         View2opcion = findViewById(R.id.View2opcion)
         View3opcion = findViewById(R.id.View3opcion)
         View4opcion = findViewById(R.id.View4opcion)
+
+        textUsuarioMenu = findViewById(R.id.textUsuarioMenu)
+        textPuntosMenu = findViewById(R.id.textPuntosMenu)
+        textTicketsMenu = findViewById(R.id.textTicketsMenu)
+
         firebaseAuth = FirebaseAuth.getInstance()
-        firebaseBD = FirebaseDatabase.getInstance().getReference("MenuBD")
+        firebaseBD = FirebaseDatabase.getInstance().getReference("RegistrarseBD")
     }
 
     private fun initListeners() {

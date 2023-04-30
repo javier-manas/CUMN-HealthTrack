@@ -44,8 +44,8 @@ class EjercicioActivity : AppCompatActivity() {
 
     private fun crearCuenta() {
 
-        var usuario = etEjUsuario.text.toString()
-        var ejercicio = etEjEjercicio.text.toString()
+        val usuario = etEjUsuario.text.toString()
+        val ejercicio = etEjEjercicio.text.toString()
         if (ejercicio.isNotEmpty()){
 
             if (usuario.isNotEmpty()){
