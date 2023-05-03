@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewOlvideMiContraseña.setOnClickListener {
-            signIn("p@gmail.com","123123")
+            signIn("u@gmail.com","123123")
         }
 
     }

@@ -1,5 +1,6 @@
 package com.example.healthtrack
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,6 +29,20 @@ class MenuActivity : AppCompatActivity() {
     private lateinit var textPuntosMenu: TextView
     private lateinit var textTicketsMenu: TextView
 
+    private lateinit var Usuario: String
+    private lateinit var Correo: String
+    private lateinit var UsId: String
+    private var Puntos: Int = -1
+    private var Tickets: Int = -1
+
+    companion object{
+        const val Correo_key = "Correo_valor"
+        const val UsId_key = "UsId_valor"
+        const val Usuario_key = "Usuario_valor"
+        const val Puntos_key = "Puntos_valor"
+        const val Tickets_key = "Tickets_valor"
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +50,7 @@ class MenuActivity : AppCompatActivity() {
         initComponents()
         initListeners()
         getData()
-        
+
 
     }
 
@@ -43,11 +58,20 @@ class MenuActivity : AppCompatActivity() {
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("RegistrarseBD/" + firebaseAuth.uid!! )
         myRef.addValueEventListener(object : ValueEventListener{
+            @SuppressLint("SetTextI18n")
             override fun onDataChange(snapshot: DataSnapshot) {
                 val userProfile = snapshot.getValue(UsuarioModel::class.java)
-                textUsuarioMenu.text = "User: " +userProfile?.usuario.toString()
-                textPuntosMenu.text = "Puntos: " +userProfile?.Puntos.toString()
-                textTicketsMenu.text = "Tickets: " + userProfile?.Tickets.toString()
+
+                 Usuario = userProfile?.usuario.toString()
+                 Correo = userProfile?.correo.toString()
+                 UsId = userProfile?.usID.toString()
+                 Puntos = userProfile?.Puntos!!
+                 Tickets = userProfile?.Tickets!!
+
+                textTicketsMenu.text = "Tickets: $Tickets"
+                textPuntosMenu.text = "Puntos: $Puntos"
+                textUsuarioMenu.text = "User: $Usuario"
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -84,6 +108,7 @@ class MenuActivity : AppCompatActivity() {
     }
 
     private fun initComponents() {
+
         View1opcion = findViewById(R.id.View1opcion)
         View2opcion = findViewById(R.id.View2opcion)
         View3opcion = findViewById(R.id.View3opcion)
@@ -118,21 +143,39 @@ class MenuActivity : AppCompatActivity() {
 
     private fun navigateTo1opcion() {
         val intent = Intent(this, ImcActivity::class.java)
+        intent.putExtra("Usuario_valor", Usuario)
+        intent.putExtra("Puntos_valor", Puntos)
+        intent.putExtra("Tickets_valor", Tickets)
+        intent.putExtra("Correo_valor", Correo)
+        intent.putExtra("UsId_valor", UsId)
         startActivity(intent)
     }
 
     private fun navigateTo2opcion() {
         val intent = Intent(this, EjercicioActivity::class.java)
+        intent.putExtra("Usuario_valor", Usuario)
+        intent.putExtra("Puntos_valor", Puntos)
+        intent.putExtra("Tickets_valor", Tickets)
+        intent.putExtra("Correo_valor", Correo)
+        intent.putExtra("UsId_valor", UsId)
         startActivity(intent)
     }
 
     private fun navigateTo3opcion() {
         val intent = Intent(this, HistorialActivity::class.java)
+        intent.putExtra("Usuario_valor", Usuario)
+        intent.putExtra("Puntos_valor", Puntos)
+        intent.putExtra("Tickets_valor", Tickets)
         startActivity(intent)
     }
 
     private fun navigateTo4opcion() {
         val intent = Intent(this, RecompensasActivity::class.java)
+        intent.putExtra("Usuario_valor", Usuario)
+        intent.putExtra("Puntos_valor", Puntos)
+        intent.putExtra("Tickets_valor", Tickets)
+        intent.putExtra("Correo_valor", Correo)
+        intent.putExtra("UsId_valor", UsId)
         startActivity(intent)
     }
 

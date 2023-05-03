@@ -17,4 +17,8 @@
     <color name="peso_normal">#4CAF50</color>
     <color name="peso_sobrepeso">#FF5722</color>
     <color name="obesidad">#FF1100</color>
+
+    <color name="background_component_selectedrep">#FF111328</color>
+    <color name="background_componentrep">#1D1E33</color>
 </resources>
+

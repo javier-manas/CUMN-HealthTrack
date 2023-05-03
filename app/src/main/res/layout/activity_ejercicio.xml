@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:autofillHints=""
             android:ems="12"
-            android:hint="usuario"
+            android:hint="descripcion"
             android:inputType="text"
             android:textColor="@color/colorTexto"
             android:textColorHint="@color/colorTexto" />
@@ -75,7 +75,37 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Crear cuenta"
+                android:text="Crear ejercicio"
+                android:textAllCaps="true"
+                android:textColor="@color/colorTexto" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/viewEjUpdate"
+        android:layout_width="128dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="60dp"
+        app:cardBackgroundColor="@color/background_component"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewEjCrearCuenta">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="updatear"
                 android:textAllCaps="true"
                 android:textColor="@color/colorTexto" />
 

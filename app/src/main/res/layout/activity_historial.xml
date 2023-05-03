@@ -13,7 +13,7 @@
         android:id="@+id/textUsuarioHistorial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="usuario"
+        tools:text="Usuario: pingalumba"
         android:textColor="@color/colorTexto"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,7 +23,7 @@
         android:id="@+id/textPuntosHistorial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Puntos: "
+        tools:text="Puntos: 555"
         android:textColor="@color/colorTexto"
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toEndOf="@+id/textUsuarioHistorial"
@@ -43,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="40dp"
         />
-    
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerHistorial"
         android:layout_width="match_parent"

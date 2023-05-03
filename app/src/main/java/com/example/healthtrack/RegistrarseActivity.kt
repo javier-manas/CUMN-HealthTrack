@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import com.example.healthtrack.models.RecompensasModel
 import com.example.healthtrack.models.UsuarioModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -53,33 +54,43 @@ class RegistrarseActivity : AppCompatActivity() {
         val correo = etRegEmailAddress.text.toString()
         val puntos = 0
         val tickets = 0
-        if (pass1.equals(pass2)){
+        if (pass1.equals(pass2)) {
 
-           if (usuario.isNotEmpty()){
+            if (usuario.isNotEmpty()) {
 
-               firebaseAuth.createUserWithEmailAndPassword(etRegEmailAddress.text.toString(), etRegPassword.text.toString())
-                   .addOnCompleteListener(this) { task ->
-                       if (task.isSuccessful){
-                           uploadData(correo, usuario, puntos, tickets)
-                           Toast.makeText(baseContext,"Cuenta creada correctamente", Toast.LENGTH_SHORT).show()
-                           navigateToMain()
-                       }
-                       else
-                       {
-                           Toast.makeText(baseContext,"Algo salio mal al crear la cuenta: " + task.exception, Toast.LENGTH_SHORT).show()
-                       }
-                   }
+                firebaseAuth.createUserWithEmailAndPassword(
+                    etRegEmailAddress.text.toString(),
+                    etRegPassword.text.toString()
+                )
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            uploadData(correo, usuario, puntos, tickets)
+                            Toast.makeText(
+                                baseContext,
+                                "Cuenta creada correctamente",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            navigateToMain()
+                        } else {
+                            Toast.makeText(
+                                baseContext,
+                                "Algo salio mal al crear la cuenta: " + task.exception,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
 
-           }
-           else
-           {
-               Toast.makeText(baseContext,"el campo usuario esta vacio", Toast.LENGTH_SHORT).show()
-           }
+            } else {
+                Toast.makeText(baseContext, "el campo usuario esta vacio", Toast.LENGTH_SHORT)
+                    .show()
+            }
 
-        }
-        else
-        {
-            Toast.makeText(baseContext,"Dos contraseñas diferentes introducidas", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(
+                baseContext,
+                "Dos contraseñas diferentes introducidas",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -88,9 +99,15 @@ class RegistrarseActivity : AppCompatActivity() {
         val usModel = UsuarioModel(usID, correo, usuario, puntos, tickets)
         firebaseBD.child(usID).setValue(usModel)
             .addOnCompleteListener {
-                Toast.makeText(baseContext,"admin: data uploaded", Toast.LENGTH_LONG).show()
-            }.addOnFailureListener {err ->
-                Toast.makeText(baseContext,"admin: data not uploaded: ${err.message}", Toast.LENGTH_LONG).show()
+                firebaseBD = FirebaseDatabase.getInstance().getReference("RecompensasBD")
+                val reModel = RecompensasModel(true, false, false, false, false)
+                firebaseBD.child(usID).setValue(reModel)
+            }.addOnFailureListener { err ->
+                Toast.makeText(
+                    baseContext,
+                    "admin: data not uploaded: ${err.message}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
     }
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="background_app">#D0FBFF</color>
+    <color name="background_component_selected">#FF892E</color>
+    <color name="background_component">#E46800</color>
+    <color name="colorTexto">#001170</color>
+    <color name="title_text">#000FA8</color>
+    <color name="background_fab">#D6CB00</color>
+
+    <color name="background_component_selectedrep">#E46800</color>
+    <color name="background_componentrep">#FF892E</color>
+
+</resources>

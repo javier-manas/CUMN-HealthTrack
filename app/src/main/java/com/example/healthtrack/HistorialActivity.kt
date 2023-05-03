@@ -19,14 +19,23 @@ class HistorialActivity : AppCompatActivity() {
     private lateinit var textUsuarioHistorial: TextView
     private lateinit var histList: ArrayList<historialModel>
     private lateinit var firebaseBD: DatabaseReference
+    private lateinit var firebaseAuth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_historial)
+        val Puntos:Int = intent.extras?.getInt(MenuActivity.Puntos_key) ?: -2
+        val Usuario:String = intent.extras?.getString(MenuActivity.Usuario_key) ?: "-2"
         initComponents()
-        getUsuarioData()
+        initUI(Usuario, Puntos)
         getHistorialData()
 
+    }
+
+    private fun initUI(Usuario: String, Puntos: Int){
+        textUsuarioHistorial.text = "Usuario: $Usuario"
+        textPuntosHistorial.text = "Puntos: $Puntos"
     }
 
     private fun getHistorialData() {
@@ -56,10 +65,6 @@ class HistorialActivity : AppCompatActivity() {
         })
     }
 
-    private fun getUsuarioData() {
-
-    }
-
     private fun initComponents() {
         recyclerHistorial = findViewById(R.id.recyclerHistorial)
         recyclerHistorial.layoutManager = LinearLayoutManager(this)
@@ -70,7 +75,9 @@ class HistorialActivity : AppCompatActivity() {
         textCargandoHistorial = findViewById(R.id.textCargandoHistorial)
         textPuntosHistorial = findViewById(R.id.textPuntosHistorial)
         textUsuarioHistorial = findViewById(R.id.textUsuarioHistorial)
-        firebaseBD = FirebaseDatabase.getInstance().getReference("HistorialBD")
+
+        firebaseAuth = FirebaseAuth.getInstance()
+        firebaseBD = FirebaseDatabase.getInstance().getReference("HistorialBD/" + firebaseAuth.uid!!)
     }
 
 
