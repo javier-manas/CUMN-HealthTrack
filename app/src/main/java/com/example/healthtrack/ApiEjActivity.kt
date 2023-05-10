@@ -1,10 +1,13 @@
 package com.example.healthtrack
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,10 +15,11 @@ import com.example.healthtrack.adapters.EjerciciosAdapter
 import com.example.healthtrack.adapters.HistorialAdapter
 import com.example.healthtrack.databinding.ActivityApiEjBinding
 import com.example.healthtrack.models.EjercicioModel
+import com.example.healthtrack.models.RecompensasModel
+import com.example.healthtrack.models.UsuarioModel
 import com.example.healthtrack.models.historialModel
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -28,10 +32,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiEjActivity : AppCompatActivity() {
 
+
+
     private lateinit var binding: ActivityApiEjBinding
     private lateinit var rvApiEj: RecyclerView
     private lateinit var ejList: ArrayList<EjercicioModel>
     private lateinit var textCargandoEj: TextView
+
 
     private var Salida: String = "null"
 
@@ -45,13 +52,15 @@ class ApiEjActivity : AppCompatActivity() {
     }
 
     private fun initComponents() {
+
         rvApiEj = findViewById(R.id.rvApiEj)
         rvApiEj.layoutManager = LinearLayoutManager(this)
         rvApiEj.setHasFixedSize(true)
 
         ejList = arrayListOf<EjercicioModel>()
         textCargandoEj = findViewById(R.id.textCargandoEj)
-
+        rvApiEj.visibility = View.GONE
+        textCargandoEj.visibility = View.VISIBLE
         getExercises()
     }
 
@@ -70,8 +79,7 @@ class ApiEjActivity : AppCompatActivity() {
     }
 
     private fun construirRV() {
-        rvApiEj.visibility = View.GONE
-        textCargandoEj.visibility = View.VISIBLE
+
 
         val gson = Gson()
         val ejercicios = gson.fromJson(Salida, Array<EjercicioModel>::class.java)
@@ -167,6 +175,5 @@ class ApiEjActivity : AppCompatActivity() {
         }
 
     }
-
 
 }

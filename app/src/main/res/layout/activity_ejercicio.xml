@@ -18,7 +18,7 @@
         android:layout_marginTop="16dp"
         android:textStyle="bold"
         android:textColor="@color/colorTexto"
-        android:text="Tus ejercicios:"/>
+        android:text="Actualmente:"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
@@ -41,7 +41,7 @@
 
 
             <TextView
-                android:id="@+id/tvIMC"
+                android:id="@+id/tvEjActual"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="70sp"
