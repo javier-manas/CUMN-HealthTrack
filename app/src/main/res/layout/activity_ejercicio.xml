@@ -5,112 +5,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EjercicioActivity"
+    android:padding="16dp"
     android:background="@color/background_app">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/viewEjUsuario"
+    <TextView
+        android:id="@+id/tvTituloEj"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        app:cardBackgroundColor="@color/background_component"
-        app:cardCornerRadius="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <EditText
-            android:id="@+id/etEjUsuario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="12"
-            android:hint="descripcion"
-            android:inputType="text"
-            android:textColor="@color/colorTexto"
-            android:textColorHint="@color/colorTexto" />
-    </androidx.cardview.widget.CardView>
+        android:textSize="40sp"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorTexto"
+        android:text="Tus ejercicios:"/>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/viewEjEjercico"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:cardBackgroundColor="@color/background_component"
         app:cardCornerRadius="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginVertical="32dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewEjUsuario">
-
-        <EditText
-            android:id="@+id/etEjEjercicio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="12"
-            android:hint="ejercico"
-            android:inputType="text"
-            android:textColor="@color/colorTexto"
-            android:textColorHint="@color/colorTexto" />
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/viewEjCrearCuenta"
-        android:layout_width="128dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="60dp"
-        app:cardBackgroundColor="@color/background_component"
-        app:cardCornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewEjEjercico">
+        app:layout_constraintBottom_toTopOf="@+id/btnAñadirEj"
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloEj">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:gravity="center"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
             android:orientation="vertical">
 
 
+
             <TextView
+                android:id="@+id/tvIMC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Crear ejercicio"
-                android:textAllCaps="true"
-                android:textColor="@color/colorTexto" />
+                android:textSize="70sp"
+                android:layout_marginVertical="64dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                tools:text="ningun ejercicio"/>
+
+
+
+
+
+
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/viewEjUpdate"
-        android:layout_width="128dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="60dp"
-        app:cardBackgroundColor="@color/background_component"
-        app:cardCornerRadius="16dp"
+    <Button
+        android:id="@+id/btnAñadirEj"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:text="añadir"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewEjCrearCuenta">
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="updatear"
-                android:textAllCaps="true"
-                android:textColor="@color/colorTexto" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
