@@ -17,6 +17,7 @@ class TutoActivity : AppCompatActivity() {
     private lateinit var tvTuto2: TextView
     private lateinit var tvTuto3: TextView
     private lateinit var tvTuto4: TextView
+    private lateinit var tvTuto5: TextView
     private lateinit var btnTuto: Button
     var cont = 0
     private lateinit var ivTuto1: ImageView
@@ -67,6 +68,12 @@ class TutoActivity : AppCompatActivity() {
                 tvTuto4.visibility = View.VISIBLE
             }
             4 -> {
+                ivTuto4.visibility = View.GONE
+                tvTuto4.visibility = View.GONE
+
+                tvTuto5.visibility = View.VISIBLE
+            }
+            5 -> {
                 val intent = Intent(this, MenuActivity::class.java)
                 startActivity(intent)
             }
@@ -79,6 +86,7 @@ class TutoActivity : AppCompatActivity() {
         tvTuto2 = findViewById(R.id.tvTuto2)
         tvTuto3 = findViewById(R.id.tvTuto3)
         tvTuto4 = findViewById(R.id.tvTuto4)
+        tvTuto5 = findViewById(R.id.tvTuto5)
         btnTuto = findViewById(R.id.btnTuto)
 
         ivTuto1 = findViewById<ImageView>(R.id.ivTuto1)
@@ -86,10 +94,10 @@ class TutoActivity : AppCompatActivity() {
         ivTuto3 = findViewById<ImageView>(R.id.ivTuto3)
         ivTuto4 = findViewById<ImageView>(R.id.ivTuto4)
 
-        ivTuto1.setImageResource(R.mipmap.ic_recompensas)
-        ivTuto2.setImageResource(R.mipmap.ic_recompensas)
-        ivTuto3.setImageResource(R.mipmap.ic_recompensas)
-        ivTuto4.setImageResource(R.mipmap.ic_recompensas)
+        ivTuto1.setImageResource(R.mipmap.ic_tutouno_foreground)
+        ivTuto2.setImageResource(R.mipmap.ic_tutodos_foreground)
+        ivTuto3.setImageResource(R.mipmap.ic_tutotres_foreground)
+        ivTuto4.setImageResource(R.mipmap.ic_tutocuatro_foreground)
 
         ivTuto1.visibility = View.VISIBLE
         tvTuto1.visibility = View.VISIBLE
