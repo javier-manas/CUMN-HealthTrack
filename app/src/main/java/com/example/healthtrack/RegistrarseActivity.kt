@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import com.example.healthtrack.models.ImcModel
 import com.example.healthtrack.models.RecompensasModel
 import com.example.healthtrack.models.UsuarioModel
 import com.google.firebase.auth.FirebaseAuth
@@ -102,6 +103,9 @@ class RegistrarseActivity : AppCompatActivity() {
                 firebaseBD = FirebaseDatabase.getInstance().getReference("RecompensasBD")
                 val reModel = RecompensasModel(true, false, false, false, false)
                 firebaseBD.child(usID).setValue(reModel)
+                firebaseBD = FirebaseDatabase.getInstance().getReference("ImcBD")
+                val imcModel = ImcModel(0.0)
+                firebaseBD.child(usID).setValue(imcModel)
             }.addOnFailureListener { err ->
                 Toast.makeText(
                     baseContext,

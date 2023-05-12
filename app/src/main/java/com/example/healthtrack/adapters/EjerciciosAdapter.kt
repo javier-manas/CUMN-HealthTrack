@@ -1,18 +1,12 @@
 package com.example.healthtrack.adapters
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
-import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.healthtrack.ImcActivity
 import com.example.healthtrack.R
 import com.example.healthtrack.models.EjercicioModel
 import com.example.healthtrack.models.UsuarioModel
@@ -39,8 +33,7 @@ class EjerciciosAdapter (private val ejList: List<EjercicioModel> ): RecyclerVie
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItemHist = ejList[position]
         holder.textItemEj.text = currentItemHist.name
-        holder.textItemEj2.text = currentItemHist.bodyPart
-        holder.textItemEj3.text = currentItemHist.target
+        holder.textItemEj3.text = "objetivo a entrenar: " +currentItemHist.target
 
         val  ejercicio = currentItemHist.name
 
@@ -92,7 +85,6 @@ class EjerciciosAdapter (private val ejList: List<EjercicioModel> ): RecyclerVie
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val btnAction:Button = itemView.findViewById(R.id.btnAction)
         val textItemEj: TextView = itemView.findViewById(R.id.textItemEj)
-        val textItemEj2: TextView = itemView.findViewById(R.id.textItemEj2)
         val textItemEj3: TextView = itemView.findViewById(R.id.textItemEj3)
     }
 

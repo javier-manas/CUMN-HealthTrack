@@ -35,6 +35,9 @@
 
     <string name="error">Error</string>
 
+    <string name="title_no_peso">Aun no has introducido tu imc</string>
+    <string name="description_no_peso">Pulsa actualizar para introducir tus datos.</string>
+
     <string name="title_bajo_peso">Bajo peso</string>
     <string name="description_bajo_peso">Estás por debajo de lo óptimo para tu peso y altura.</string>
 

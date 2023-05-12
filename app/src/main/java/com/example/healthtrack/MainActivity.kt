@@ -1,12 +1,21 @@
 package com.example.healthtrack
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import com.example.healthtrack.models.RecompensasModel
+import com.example.healthtrack.models.UsuarioModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.app
@@ -46,6 +55,8 @@ class MainActivity : AppCompatActivity() {
         etEmailAddress = findViewById(R.id.etEmailAddress)
         etPassword = findViewById(R.id.etPassword)
         firebaseAuth = FirebaseAuth.getInstance()
+        val ivMain = findViewById<ImageView>(R.id.ivMain)
+        ivMain.setImageResource(R.mipmap.ic_main)
     }
 
 
@@ -59,13 +70,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewOlvideMiContraseña.setOnClickListener {
-            signIn("u@gmail.com","123123")
+            signIn("b@gmail.com","123123")
         }
 
     }
 
     private fun navigateToMenu() {
         val intent = Intent(this, MenuActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun navigateToTuto() {
+        val intent = Intent(this, TutoActivity::class.java)
         startActivity(intent)
     }
 
@@ -80,7 +96,27 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful){
                     val user = firebaseAuth.currentUser
                     Toast.makeText(baseContext,"Usuario y contraseña correctos", Toast.LENGTH_SHORT).show()
-                    navigateToMenu()
+
+                    val database = FirebaseDatabase.getInstance()
+                    val myRef = database.getReference("RegistrarseBD/" + firebaseAuth.uid!!)
+
+                    myRef.addValueEventListener(object : ValueEventListener {
+                        @SuppressLint("SetTextI18n")
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            val usProfile = snapshot.getValue(UsuarioModel::class.java)
+                            val puntos = usProfile?.Puntos!!
+                            if (puntos > 0){
+                                navigateToMenu()
+                            }else{
+                                navigateToTuto()
+                            }
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                            Toast.makeText(baseContext, "cancel", Toast.LENGTH_SHORT).show()
+                        }
+                    })
+
                 }
                 else
                 {

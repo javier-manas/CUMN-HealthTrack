@@ -28,8 +28,14 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
+            <ImageView
+                android:id="@+id/ivImc"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                />
 
             <TextView
+                android:layout_marginTop="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/String1opcion"
@@ -59,7 +65,14 @@
             android:gravity="center"
             android:orientation="vertical">
 
+            <ImageView
+                android:id="@+id/ivEj"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                />
+
             <TextView
+                android:layout_marginTop="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/String2opcion"
@@ -89,7 +102,14 @@
             android:orientation="vertical">
 
 
+            <ImageView
+                android:id="@+id/ivHistorial"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                />
+
             <TextView
+                android:layout_marginTop="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/String3opcion"
@@ -117,7 +137,14 @@
             android:gravity="center"
             android:orientation="vertical">
 
+            <ImageView
+                android:id="@+id/ivRecompensas"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                />
+
             <TextView
+                android:layout_marginTop="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/String4opcion"

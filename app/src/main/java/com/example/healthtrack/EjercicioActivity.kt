@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
@@ -52,7 +53,9 @@ class EjercicioActivity : AppCompatActivity() {
     }
     private fun initUI() {
         if (Puntos > 0){
-            tvEjActual.text = "air bike"
+            tvEjActual.text = "split squats"
+            val ivsquat = findViewById<ImageView>(R.id.ivsquat)
+            ivsquat.setImageResource(R.mipmap.ic_squats)
         }else{
             tvEjActual.text = "no hay ningun ejercicio realizandose actualmente"
         }
@@ -62,6 +65,7 @@ class EjercicioActivity : AppCompatActivity() {
         btnAñadirEj = findViewById(R.id.btnAñadirEj)
         tvEjActual = findViewById(R.id.tvEjActual)
         firebaseAuth = FirebaseAuth.getInstance()
+
 
 
     }

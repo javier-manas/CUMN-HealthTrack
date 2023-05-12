@@ -6,6 +6,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
@@ -27,6 +29,10 @@ class RecompensasActivity : AppCompatActivity() {
 
     private lateinit var firebaseBD: DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
+    private var Ticketsact = 0
+
+    private lateinit var linlay1: LinearLayout
+    private lateinit var linlay2: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +43,7 @@ class RecompensasActivity : AppCompatActivity() {
         val Usuario: String = intent.extras?.getString(MenuActivity.Usuario_key) ?: "-2"
         val UsId: String = intent.extras?.getString(MenuActivity.UsId_key) ?: "-2"
         initComponents()
-        initUI(Tickets)
+        initUI()
         initListeners(Usuario, UsId, Correo, Puntos, Tickets)
 
     }
@@ -47,6 +53,8 @@ class RecompensasActivity : AppCompatActivity() {
         ViewCanjear = findViewById(R.id.ViewCanjear1)
         tvPuntos = findViewById(R.id.tvPuntos)
         firebaseAuth = FirebaseAuth.getInstance()
+        linlay1 = findViewById(R.id.linlay1)
+        linlay2 = findViewById(R.id.linlay2)
         tieneElTema()
     }
 
@@ -68,9 +76,9 @@ class RecompensasActivity : AppCompatActivity() {
                 cambiarColorAmanecer()
             } else {
                 if (Tickets >= 2) {
-                    val TicketsMod = Tickets - 2
-                    updateData(Usuario, UsId, Correo, Puntos, TicketsMod)
-                    initUI(TicketsMod)
+                    val Ticketsmod = Tickets - 2
+                    updateData(Usuario, UsId, Correo, Puntos, Ticketsmod)
+
                 } else {
                     Toast.makeText(baseContext, "no tienes tickets suficientes", Toast.LENGTH_SHORT)
                         .show()
@@ -92,6 +100,10 @@ class RecompensasActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val reProfile = snapshot.getValue(RecompensasModel::class.java)
                 Tema2 = reProfile?.Tema2!!
+                if (Tema2){
+                    linlay1.visibility = View.GONE
+                    linlay2.visibility = View.VISIBLE
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -138,7 +150,24 @@ class RecompensasActivity : AppCompatActivity() {
     }
 
 
-    private fun initUI(valorPuntos: Int) {
-        tvPuntos.text = "Tus Tickets: $valorPuntos"
+    private fun initUI() {
+
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("RegistrarseBD/" + firebaseAuth.uid!! )
+        myRef.addValueEventListener(object : ValueEventListener{
+            @SuppressLint("SetTextI18n")
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val userProfile = snapshot.getValue(UsuarioModel::class.java)
+
+                Ticketsact = userProfile?.Tickets!!
+
+                tvPuntos.text = "Tus Tickets: $Ticketsact"
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(baseContext,"cancel", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

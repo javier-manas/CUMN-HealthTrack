@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.inputmethod.InputBinding
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
@@ -34,6 +35,8 @@ class MenuActivity : AppCompatActivity() {
     private lateinit var UsId: String
     private var Puntos: Int = -1
     private var Tickets: Int = -1
+
+
 
     companion object{
         const val Correo_key = "Correo_valor"
@@ -114,6 +117,18 @@ class MenuActivity : AppCompatActivity() {
         View3opcion = findViewById(R.id.View3opcion)
         View4opcion = findViewById(R.id.View4opcion)
 
+        val ivImc = findViewById<ImageView>(R.id.ivImc)
+        ivImc.setImageResource(R.mipmap.ic_imc)
+
+        val ivEj = findViewById<ImageView>(R.id.ivEj)
+        ivEj.setImageResource(R.mipmap.ic_ejercicio)
+
+        val ivHistorial = findViewById<ImageView>(R.id.ivHistorial)
+        ivHistorial.setImageResource(R.mipmap.ic_historial)
+
+        val ivRecompensas = findViewById<ImageView>(R.id.ivRecompensas)
+        ivRecompensas.setImageResource(R.mipmap.ic_recompensas)
+
         textUsuarioMenu = findViewById(R.id.textUsuarioMenu)
         textPuntosMenu = findViewById(R.id.textPuntosMenu)
         textTicketsMenu = findViewById(R.id.textTicketsMenu)
@@ -142,7 +157,7 @@ class MenuActivity : AppCompatActivity() {
     }
 
     private fun navigateTo1opcion() {
-        val intent = Intent(this, ImcActivity::class.java)
+        val intent = Intent(this, VerMiImcActivity::class.java)
         intent.putExtra("Usuario_valor", Usuario)
         intent.putExtra("Puntos_valor", Puntos)
         intent.putExtra("Tickets_valor", Tickets)

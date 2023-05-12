@@ -8,8 +8,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import com.example.healthtrack.models.ImcModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.slider.RangeSlider
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import java.text.DecimalFormat
 
 class ActualizarMiImcActivity : AppCompatActivity() {
@@ -31,6 +35,9 @@ class ActualizarMiImcActivity : AppCompatActivity() {
     private lateinit var btnPlusAge: FloatingActionButton
     private lateinit var tvAge: TextView
     private lateinit var btnCalculate: Button
+
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var firebaseBD: DatabaseReference
 
     companion object{
         const val IMC_KEY = "IMC_RESULT"
@@ -56,6 +63,9 @@ class ActualizarMiImcActivity : AppCompatActivity() {
         btnPlusAge = findViewById(R.id.btnPlusAge)
         tvAge = findViewById(R.id.tvAge)
         btnCalculate = findViewById(R.id.btnCalculate)
+
+        firebaseAuth = FirebaseAuth.getInstance()
+        firebaseBD = FirebaseDatabase.getInstance().getReference("ImcBD")
     }
 
     private fun initListeners() {
@@ -90,9 +100,17 @@ class ActualizarMiImcActivity : AppCompatActivity() {
         }
         btnCalculate.setOnClickListener {
             val result = calculateIMC()
+            uploadData(result)
             navigateToResult(result)
         }
     }
+
+    private fun uploadData(result: Double) {
+        val usID = firebaseAuth.uid!!
+        val ImcModel = ImcModel(result)
+        firebaseBD.child(usID).setValue(ImcModel)
+    }
+
 
     private fun navigateToResult(result: Double) {
         Toast.makeText(baseContext,"Informacion actualizada", Toast.LENGTH_SHORT).show()
